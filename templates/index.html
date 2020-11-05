@@ -7,6 +7,9 @@ div {
   border: 5px solid gray;
   margin: auto;
   text-align: center;
+}
+
+divleft {
 
 }
   </style>
@@ -17,8 +20,8 @@ div {
   <body>
     <h2>Hello {{ name }}!</h2>
     <div>
-      {% for para in fakelist %}
-        <p>{{para}}</p>
+      {% for item in fakelist %}
+      <p><b>Task to do: </b> {{item[0]}} <b>Email assigned: </b> {{item[1]}} <b>Priority: </b> {{item[2]}}</p>
       {% endfor %}
     </div>
     <div>
@@ -30,7 +33,9 @@ div {
       <option value="medium">medium</option>
       <option value="high">high</option>
   </select><br/>
-    <input type="submit" value="Send my Order">
+    <input type="submit" value="Submit">
+  <br />
+    <input type="submit" value="Clear">
 </form>
 </div>
   </body>
