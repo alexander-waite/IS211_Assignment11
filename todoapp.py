@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect
 import re
 
 app = Flask(__name__)
-fakelist = [["x", "a", "h"], ["y", "b", "c"], ["z", "d", "n"]]
+newlist = []
 
 
 @app.route('/')
 def hello_world():
     author = "beast mode beast mode"
     name = "apex predator"
-    return render_template('index.html', author=author, name=name, fakelist=fakelist)
+    return render_template('index.html', author=author, name=name, fakelist=newlist)
 
 
 @app.route('/submit', methods=['POST'])
@@ -22,7 +22,7 @@ def submit():
         regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
         if re.search(regex, email):
             if priority in ['low', 'medium', 'high']:
-                fakelist.append([task, email, priority])
+                newlist.append([task, email, priority])
         else:
             pass
         return redirect('/')
@@ -30,11 +30,12 @@ def submit():
     check_items(task, email, priority)
     return redirect('/')
 
-@app.route('/clear')
-def hello_world():
-    author = "/submit"
-    name = "/submit"
-    return render_template('index.html', author=author, name=name)
+
+@app.route('/clear', methods=['POST'])
+def clear():
+    newlist.clear()
+    return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
