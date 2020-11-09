@@ -7,8 +7,8 @@ newlist = []
 
 @app.route('/')
 def hello_world():
-    author = "beast mode beast mode"
-    name = "apex predator"
+    author = "index"
+    name = "user"
     return render_template('index.html', author=author, name=name, fakelist=newlist)
 
 
